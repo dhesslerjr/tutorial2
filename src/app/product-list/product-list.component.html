@@ -7,18 +7,18 @@ Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 -->
 
-<div *ngFor="let product of products">
+<div *ngFor="let product of products; index as productId">
   <h3>
-    <a [title]="product.name + ' details'">
+    <a [title]="product.name + ' details'" [routerLink]="['/products',productId]">
     {{ product.name }}
     </a>
     </h3>
     <p *ngIf="product.description">
       Description: {{product.description }}
       </p>
-      <button (click)="share()">
+      <button (click)="share(product.name)">
         Share
         </button>
-        <app-product-alerts [product]="product">
+        <app-product-alerts [product]="product" (notify)="onNotify(product.name)">
         </app-product-alerts>
 </div>
