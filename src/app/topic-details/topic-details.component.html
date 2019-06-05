@@ -1,0 +1,10 @@
+<h2>
+    Topic Details
+</h2>
+<div *ngIf="topic">
+    <h3>{{ topic.Title }}</h3>
+    <h4>{{ topic.Author }}</h4>
+    <h4>{{ topic.topicStatus }}</h4>
+    <p>{{ topic.Description }}</p>
+    <button (click)="addToCart(product)">Buy</button>
+</div>

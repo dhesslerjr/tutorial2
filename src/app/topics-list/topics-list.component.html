@@ -1,0 +1,27 @@
+<h2>Topics</h2>
+<div *ngFor="let topic of topics">
+  <h3>
+    <a [title]="topic.Title + ' details'" [routerLink]="['/topics',topic.topicID]">
+    {{ topic.Title }}
+    </a>
+    </h3>
+    <p>Status: {{ topic.topicStatus }}</p>
+    <p *ngIf="topic.Description">
+      Description: {{topic.Description }}
+      </p>
+      <div class="cart-item" >
+        <span>Yes Votes</span>
+        <span>{{ topic.countYes }}</span>
+      </div>
+
+      <div class="cart-item" >
+        <span>No Votes</span>
+        <span>{{ topic.countNo }}</span>
+      </div>
+
+      <div class="cart-item" >
+        <span>Abstained</span>
+        <span>{{ topic.countAbstain }}</span>
+      </div>
+</div>
+
