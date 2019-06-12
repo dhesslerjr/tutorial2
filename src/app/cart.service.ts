@@ -22,7 +22,7 @@ export class CartService {
     return this.items;
   }
 
-  getTopics(){
-    return this.http.get('/assets/topics.json');
+  getShippingPrices() {
+    return this.http.get('/assets/shipping.json');
   }
 }
