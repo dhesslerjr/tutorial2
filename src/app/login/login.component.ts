@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.loginUser = "";
 
     for ( var i=0; ++i; i<this.users.length){
-      var u: user = this.users[i];
+      var u = <user> this.users[i];
       if(u.loginEmail == loginData.username){
         this.loginUser = u.loginEmail;
       }
