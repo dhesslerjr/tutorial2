@@ -15,6 +15,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { TopicsListComponent } from './topics-list/topics-list.component';
 import { TopicDetailsComponent } from './topic-details/topic-details.component';
 import { ChartsModule } from 'ng2-charts';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -24,11 +25,13 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     ChartsModule,
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
+      { path: '', component: TopicsListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent},
       { path: 'cart', component: CartComponent},
+      { path: 'login', component: LoginComponent},
       { path: 'shipping', component: ShippingComponent },
       { path: 'topics', component: TopicsListComponent },
+      { path: 'products', component: ProductListComponent },
       { path: 'topics/:topicID', component: TopicDetailsComponent },
     ])
   ],
@@ -41,7 +44,8 @@ import { ChartsModule } from 'ng2-charts';
     CartComponent,
     ShippingComponent,
     TopicsListComponent,
-    TopicDetailsComponent
+    TopicDetailsComponent,
+    LoginComponent
   ],
   providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [ AppComponent ]
