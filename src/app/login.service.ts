@@ -3,9 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map,flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
 
 export class user {
   loginEmail; 
@@ -15,6 +12,10 @@ export class user {
     isAuthorTole;
     isVoterTole;
 }
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class LoginService {
   users: user[] = null;
