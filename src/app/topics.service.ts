@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators'
+import { map, flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class TopicsService {
 
   getTopic(atopicID) {
     if (this.topics == null) {
-      return this.init().pipe(map(() => {
+      return this.init().pipe(flatMap(() => {
         return Observable.create(o => o.next(this.topics.find(topic => {
           return topic.topicID == atopicID
         })));

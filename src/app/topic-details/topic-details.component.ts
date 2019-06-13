@@ -26,12 +26,6 @@ export class TopicDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
-        let vyes = topic['countYes'].map(topic => topic.countYes);
-        let vno = topic['countYes'].map(topic => topic.countNo);
-        let vabstain = topic['countYes'].map(topic => topic.countAbstain);
-        this.topic.pieChartData.push(vyes);
-        this.topic.pieChartData.push(vno);
-        this.topic.pieChartData.push(vabstain);
         this.topic=topic;
       });
     }); 
