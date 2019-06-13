@@ -7,4 +7,12 @@
     <h4>{{ topic.topicStatus }}</h4>
     <p>{{ topic.Description }}</p>
     <button (click)="addToCart(product)">Buy</button>
+
+    <div style="display: block">
+            <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType">
+            </canvas>
+    </div>
 </div>

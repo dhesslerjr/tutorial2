@@ -11,6 +11,13 @@ import { TopicsService } from '../topics.service';
 export class TopicDetailsComponent implements OnInit {
   topic;
 
+  //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
+  //public pieChartData = [120, 150, 180, 90];
+  public pieChartLabels = ['Yes',"No",'Abstain'];
+  public pieChartData = [];
+  
+  public pieChartType = 'pie';
+
   constructor(private route: ActivatedRoute,
     private topicService: TopicsService) { }
 
@@ -20,6 +27,10 @@ export class TopicDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {this.topic=topic;});
     }); 
+
+    this.pieChartData.push(this.topic.countYes);
+    this.pieChartData.push(this.topic.countNo);
+    this.pieChartData.push(this.topic.countAbstain);
 
   }
 

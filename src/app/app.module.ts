@@ -14,12 +14,15 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { TopicsListComponent } from './topics-list/topics-list.component';
 import { TopicDetailsComponent } from './topic-details/topic-details.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartsModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent},
