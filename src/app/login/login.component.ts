@@ -36,9 +36,6 @@ export class LoginComponent implements OnInit {
     }
 
 
-    //this.loginUser =  this.users.find(x => x.loginEmail == loginData.username).loginEmail;
-    window.alert("onSubmit()");
-
     if(this.loginUser){
       window.alert('Login succeeded.');
     }
