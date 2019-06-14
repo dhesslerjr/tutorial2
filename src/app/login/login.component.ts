@@ -26,16 +26,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit(loginData){
     
-    this.loginUser = "";
-
+    this.loginUser = loginData.username;
+/*
     for ( var i=0; ++i; i<this.users.length){
-      var u = <user> this.users[i];
+      var u: user = <user> this.users[i];
       if(u.loginEmail == loginData.username){
         this.loginUser = u.loginEmail;
       }
 
     }
+*/
 
+    this.users.forEach(u => {
+      if(u.loginEmail == loginData.username){
+        this.loginUser = u.loginEmail;
+      }
+    });
 
     if(this.loginUser){
       window.alert('Login succeeded.');
