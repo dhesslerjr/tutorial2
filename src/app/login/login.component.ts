@@ -11,6 +11,10 @@ export class LoginComponent implements OnInit {
   
   loginForm;
   users: user[];
+  public isVoter: boolean;
+  public isAdmin: boolean;
+  public isAuthor: boolean;
+  public isLoggedOn: boolean;
 
   constructor(private LoginService: LoginService,
     private formBuilder: FormBuilder, ) {
@@ -21,26 +25,39 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    if(localStorage.getItem('username').length>1){
+      this.isLoggedOn=true;
+      if(localStorage.getItem('vo')==JSON.stringify(true)){
+        this.isVoter=true;
+      }
+      else{
+        this.isVoter=false;
+      }
+    }
+    else{
+      this.isLoggedOn=false;
+    }
   }
 
   onSubmit(loginData){
     
     let loginSuccess = false;
-    localStorage.setItem('username','none');
-    localStorage.setItem('vo','0');
-    localStorage.setItem('ad','0');
-    localStorage.setItem('au','0');
-  
-    this.users.forEach(u => {
-      if (u.loginEmail === loginData.username && u.loginPwd === loginData.password) {
-        loginSuccess = true;
-        localStorage.setItem('username',u.loginEmail);
-        localStorage.setItem('vo',u.isVoterRole);
-        localStorage.setItem('ad',u.isAdminRole);
-        localStorage.setItem('au',u.isAuthorRole);
-      }
-    });
+    localStorage.setItem('username','n');
+    localStorage.setItem('vo',JSON.stringify(false));
+    localStorage.setItem('ad',JSON.stringify(false));
+    localStorage.setItem('au',JSON.stringify(false));
+    
+    if(!loginData.do_logout){
+      this.users.forEach(u => {
+        if (u.loginEmail === loginData.username && u.loginPwd === loginData.password) {
+          loginSuccess = true;
+          localStorage.setItem('username',u.loginEmail);
+          localStorage.setItem('vo',u.isVoterRole);
+          localStorage.setItem('ad',u.isAdminRole);
+          localStorage.setItem('au',u.isAuthorRole);
+        }
+      });
+    }
 
     if(loginSuccess){
       window.alert('Login succeeded.');

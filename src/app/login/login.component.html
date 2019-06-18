@@ -5,7 +5,13 @@
     <input type="text" formControlName="username"></div>
     <div><label>Password</label>
       <input type="password" formControlName="password"></div>
-      <button class="button" type="submit">Login</button>
-    
+      <div *ngIf="!isLoggedOn; else doLogout">
+        <button class="button" type="submit">Login</button>
+      </div>
   </form>
 </div>
+
+<ng-template #doLogout>
+    <input type="hidden" formControlName="do_logout" value="yes">
+    <button class="button" type="submit">Logout</button>
+</ng-template>
