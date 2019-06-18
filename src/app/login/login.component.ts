@@ -8,15 +8,15 @@ import { LoginService, user } from '../login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUser: string;
+  
   loginForm;
-  users: user [];
+  users: user[];
 
   constructor(private LoginService: LoginService,
     private formBuilder: FormBuilder, ) {
   
-    this.LoginService.getUsers().subscribe(users => {this.users=users;});
-    this.loginForm = this.formBuilder.group({username: '', password: ''});
+    this.LoginService.getUsers().subscribe(users => { this.users=users; });
+    this.loginForm = this.formBuilder.group({ username: '', password: '' });
    }
 
 
@@ -26,25 +26,25 @@ export class LoginComponent implements OnInit {
 
   onSubmit(loginData){
     
-    this.loginUser = loginData.username;
-/*
-    for ( var i=0; ++i; i<this.users.length){
-      var u: user = <user> this.users[i];
-      if(u.loginEmail == loginData.username){
-        this.loginUser = u.loginEmail;
-      }
-
-    }
-*/
-
+    let loginSuccess = false;
+    localStorage.setItem('username','none');
+    localStorage.setItem('vo','0');
+    localStorage.setItem('ad','0');
+    localStorage.setItem('au','0');
+  
     this.users.forEach(u => {
-      if(u.loginEmail == loginData.username){
-        this.loginUser = u.loginEmail;
+      if (u.loginEmail === loginData.username && u.loginPwd === loginData.password) {
+        loginSuccess = true;
+        localStorage.setItem('username',u.loginEmail);
+        localStorage.setItem('vo',u.isVoterRole);
+        localStorage.setItem('ad',u.isAdminRole);
+        localStorage.setItem('au',u.isAuthorRole);
       }
     });
 
-    if(this.loginUser){
+    if(loginSuccess){
       window.alert('Login succeeded.');
+
     }
     else{
       window.alert('Login failed.');

@@ -13,7 +13,8 @@ export class TopicDetailsComponent implements OnInit {
 
   //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
   //public pieChartData = [120, 150, 180, 90];
-  public pieChartLabels = ['Yes',"No",'Abstain'];
+  public pieChartLabels = ['Yes','No','Abstain'];
+  //public pieChartColors = ["#3e95cd", "#3e95cd", "#3e95cd"];
   public pieChartData = [];
   
   public pieChartType = 'pie';

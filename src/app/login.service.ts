@@ -8,9 +8,9 @@ export class user {
   loginEmail; 
     loginPwd;
     accountStatus;
-    isAdminTole;
-    isAuthorTole;
-    isVoterTole;
+    isAdminRole;
+    isAuthorRole;
+    isVoterRole;
 }
 
 @Injectable({
@@ -30,7 +30,8 @@ export class LoginService {
 
   getUsers() {
     if (this.users == null) {
-      return this.init().pipe(flatMap(() => { return this.users }));
+      //return this.init().pipe(flatMap(() => { return this.users }));
+      return this.init().pipe(map(() => { return this.users }));
     }
     else {
       return Observable.create(o => o.next(this.users));
