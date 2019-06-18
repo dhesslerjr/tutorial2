@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TopicsService } from '../topics.service';
+import { Topic,TopicsService } from '../topics.service';
 
 @Component({
   selector: 'app-topic-details',
@@ -9,7 +9,8 @@ import { TopicsService } from '../topics.service';
   styleUrls: ['./topic-details.component.css']
 })
 export class TopicDetailsComponent implements OnInit {
-  topic;
+  topic: Topic;
+  isAuthor: boolean;
 
   //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
   //public pieChartData = [120, 150, 180, 90];
@@ -28,15 +29,45 @@ export class TopicDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
         this.topic=topic;
+          this.refreshChart();
+          });
+    }); 
 
-        this.pieChartData = []; // Clear any existing data in case "topicID" changes
+    this.isAuthor = (localStorage.getItem('vo')=="yes");
+  
+  }
+
+  refreshChart()
+  {
+    this.pieChartData = []; // Clear any existing data in case "topicID" changes
         // Populate data set in the same order as the labels
         this.pieChartData.push(this.topic.countYes);
         this.pieChartData.push(this.topic.countNo);
         this.pieChartData.push(this.topic.countAbstain);
-      });
-    }); 
 
   }
 
+  vote(myvote){
+
+    var x = Number("1");
+    var y = Number(this.topic.countYes);
+    var n = Number(this.topic.countNo);
+    var a = Number(this.topic.countAbstain);
+
+    switch(myvote){
+      case "yes":
+          this.topic.countYes = y + x;
+          break;
+      case "no":
+            n = n+x;
+            this.topic.countNo = n + x;
+            break;
+      case "abstain":
+            a = a +x;
+              this.topic.countAbstain = a + x;
+              break;
+    }
+    this.refreshChart();  
+
+  }
 }

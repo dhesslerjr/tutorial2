@@ -3,11 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { map, flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
+export class Topic
+{
+  topicID;
+  Author; //": "author@icsd.k12.ny.us",
+  Title; //": "topic2",
+  Description; //": "Second topic description here.",
+  topicStatus; //": "Published",
+  countYes: Number; //": "0",
+  countNo: Number; //": "0",
+  countAbstain: Number; //": "0"
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class TopicsService {
-  topics: any[] = null;
+  topics: Topic[] = null;
   static nextTopicId = 100;
 
   constructor(private http: HttpClient) {

@@ -6,8 +6,14 @@
     <h4>{{ topic.Author }}</h4>
     <h4>{{ topic.topicStatus }}</h4>
     <p>{{ topic.Description }}</p>
-    <button (click)="addToCart(product)">Buy</button>
-
+    <p>
+      isAuthor = {{ isAuthor }} 
+    </p>
+    <p *ngIf=" topic.topicStatus=='Open' ">
+    <button (click)="vote('yes')">Vote Yes</button>&nbsp;
+    <button (click)="vote('no')">Vote No</button>&nbsp;
+    <button (click)="vote('abstain')">Abstain</button>
+    </p>
    
     <div style="display: block">
             <canvas baseChart

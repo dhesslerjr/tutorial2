@@ -11,27 +11,31 @@ export class LoginComponent implements OnInit {
   
   loginForm;
   users: user[];
-  public isVoter: boolean;
-  public isAdmin: boolean;
-  public isAuthor: boolean;
+  currentUser: user;
   public isLoggedOn: boolean;
-
+  
   constructor(private LoginService: LoginService,
     private formBuilder: FormBuilder, ) {
-  
+    this.currentUser = new user();
     this.LoginService.getUsers().subscribe(users => { this.users=users; });
     this.loginForm = this.formBuilder.group({ username: '', password: '' });
    }
 
 
   ngOnInit() {
+    this.userFromLocalStorage();
+  }
+
+  userFromLocalStorage()
+  {
     if(localStorage.getItem('username').length>1){
       this.isLoggedOn=true;
+      this.currentUser.loginEmail=localStorage.getItem('username');
       if(localStorage.getItem('vo')==JSON.stringify(true)){
-        this.isVoter=true;
+        this.currentUser.isVoterRole=true;
       }
       else{
-        this.isVoter=false;
+        this.currentUser.isVoterRole=false;
       }
     }
     else{
@@ -42,12 +46,12 @@ export class LoginComponent implements OnInit {
   onSubmit(loginData){
     
     let loginSuccess = false;
-    localStorage.setItem('username','n');
+    localStorage.setItem('username','-');
     localStorage.setItem('vo',JSON.stringify(false));
     localStorage.setItem('ad',JSON.stringify(false));
     localStorage.setItem('au',JSON.stringify(false));
     
-    if(!loginData.do_logout){
+    if(loginData.do_logout!="yes"){
       this.users.forEach(u => {
         if (u.loginEmail === loginData.username && u.loginPwd === loginData.password) {
           loginSuccess = true;
@@ -55,20 +59,24 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('vo',u.isVoterRole);
           localStorage.setItem('ad',u.isAdminRole);
           localStorage.setItem('au',u.isAuthorRole);
+          this.currentUser = u;
+          this.isLoggedOn=true; 
         }
       });
-    }
-
-    if(loginSuccess){
-      window.alert('Login succeeded.');
-
+      if(loginSuccess){
+        window.alert('Login succeeded.');
+  
+      }
+      else{
+        window.alert('Login failed.');
+      }
     }
     else{
-      window.alert('Login failed.');
+      this.isLoggedOn = false;
+      localStorage.setItem('username','-');
+      window.alert('Logged out.');
     }
-    
-    //console.warn('Order data: ',customerData);
-    
+ 
     this.loginForm.reset();
   }
 }

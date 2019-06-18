@@ -1,5 +1,13 @@
 [
-{ 
+    { 
+        "loginEmail": "test",
+        "loginPwd": "mypwd",
+        "accountStatus": "Active",
+        "isAdminRole": "true",
+        "isAuthorRole": "true",
+        "isVoterRole": "true"
+    },    
+    { 
     "loginEmail": "admin@icsd.k12.ny.us",
     "loginPwd": "mypwd",
     "accountStatus": "Active",
