@@ -37,6 +37,20 @@ export class LoginComponent implements OnInit {
       else{
         this.currentUser.isVoterRole=false;
       }
+      if(localStorage.getItem('au')==JSON.stringify(true)){
+        this.currentUser.isAuthorRole=true;
+      }
+      else{
+        this.currentUser.isAuthorRole=false;
+      }
+      if(localStorage.getItem('ad')==JSON.stringify(true)){
+        this.currentUser.isAdminRole=true;
+      }
+      else{
+        this.currentUser.isAdminRole=false;
+      }
+
+
     }
     else{
       this.isLoggedOn=false;
