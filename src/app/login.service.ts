@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map,flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 export class user {
-  loginEmail; 
+  loginEmail;
     loginPwd;
     accountStatus;
     isAdminRole;
@@ -19,6 +20,7 @@ export class user {
 
 export class LoginService {
   users: user[] = null;
+  authenticatedUser: user = null;
 
   constructor(private http: HttpClient) { }
 
@@ -36,5 +38,21 @@ export class LoginService {
     else {
       return Observable.create(o => o.next(this.users));
     }
+  }
+
+  login(user: user){
+    this.authenticatedUser = user;
+  }
+
+  logout() {
+    this.authenticatedUser = null;
+  }
+
+  isLoggedIn() {
+    return this.authenticatedUser !== null;
+  }
+
+  getCurrentUser() {
+    return this.authenticatedUser;
   }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 
@@ -22,6 +22,7 @@ import { LoginService } from './login.service';
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ChartsModule,
@@ -34,7 +35,7 @@ import { LoginService } from './login.service';
       { path: 'topics', component: TopicsListComponent },
       { path: 'products', component: ProductListComponent },
       { path: 'topics/:topicID', component: TopicDetailsComponent },
-    ])
+  ])
   ],
   declarations: [
     AppComponent,

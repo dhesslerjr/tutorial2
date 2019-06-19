@@ -2,9 +2,10 @@
   <h1>LACS eVote v0.1</h1>
 </a>
 
-<a [routerLink]="['/login']" class="button fancy-button">Login</a>
+<span>{{getUsername()}}</span>
+<a [routerLink]="['/login']" class="button fancy-button">{{loginService.isLoggedIn() ? 'Logout' : 'Login'}}</a>
 
-<!-- 
+<!--
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Topic,TopicsService } from '../topics.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-topic-details',
@@ -10,7 +11,6 @@ import { Topic,TopicsService } from '../topics.service';
 })
 export class TopicDetailsComponent implements OnInit {
   topic: Topic;
-  isAuthor: boolean;
 
   //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
   //public pieChartData = [120, 150, 180, 90];
@@ -18,24 +18,22 @@ export class TopicDetailsComponent implements OnInit {
   //public pieChartColors = [{backgroundColor: '#00cc00'}, {backgroundColor: '#ff0000'}, {backgroundColor: '#ffff33'}];
   public pieChartColors = [{backgroundColor: ['#00cc00','#ff0000','#ffff33']}];
   public pieChartData = [];
-  
+
   public pieChartType = 'pie';
 
   constructor(private route: ActivatedRoute,
-    private topicService: TopicsService) { }
+    private topicService: TopicsService,
+    private loginService: LoginService) { }
 
   ngOnInit(){
    // this.topic = this.topicService.getTopic(1);
 
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
-        this.topic=topic;
+        this.topic = JSON.parse(JSON.stringify(topic));
           this.refreshChart();
-          });
-    }); 
-
-    this.isAuthor = (localStorage.getItem('vo')=="yes");
-  
+        });
+    });
   }
 
   refreshChart()
@@ -60,15 +58,28 @@ export class TopicDetailsComponent implements OnInit {
           this.topic.countYes = y + x;
           break;
       case "no":
-            n = n+x;
             this.topic.countNo = n + x;
             break;
       case "abstain":
-            a = a +x;
-              this.topic.countAbstain = a + x;
-              break;
+            this.topic.countAbstain = a + x;
+            break;
     }
-    this.refreshChart();  
+    this.refreshChart();
+  }
 
+  voteBtnVisible(){
+    if(this.loginService.isLoggedIn()){
+      return this.loginService.getCurrentUser().isVoterRole && this.topic.topicStatus === 'Open';
+    } else {
+      return false;
+    }
+  }
+
+  editable(){
+    if(this.loginService.isLoggedIn()){
+      return this.loginService.getCurrentUser().isAuthorRole && this.topic.topicStatus === 'Draft';
+    } else {
+      return false;
+    }
   }
 }

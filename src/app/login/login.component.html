@@ -1,20 +1,25 @@
 <div>
   <p></p>
-  <p>{{ currentUser.loginEmail }}</p>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+
+  <div><label>Your ICSD email addres</label></div>
+  <input type="text" [(ngModel)]="email">
+  <div><label>Password</label></div>
+  <input type="password" [(ngModel)]="password"></div>
+  <button class="button" (click)="loginBtnClick()">{{getLoginBtnTxt()}}</button>
+
+  <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <div><label>Your ICSD email address</label>
     <input type="text" formControlName="username"></div>
     <div><label>Password</label>
       <input type="password" formControlName="password"></div>
-      <div *ngIf="!isLoggedOn; else doLogout">
+      <div *ngIf="!isLoggedOn()">
           <input type="hidden" formControlName="do_logout" value="no">
           <button class="button" type="submit">Login</button>
       </div>
   </form>
-</div>
 
-<ng-template #doLogout>
+<div *ngIf="isLoggedOn()">
     <a [routerLink]="['/topics']" class="button fancy-button">Topics</a>
     <input type="hidden" formControlName="do_logout" value="yes">
     <button class="button" type="submit">Logout</button>
-</ng-template>
+</div> -->
