@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Topic,TopicsService } from '../topics.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-topic-details',
@@ -18,11 +19,12 @@ export class TopicDetailsComponent implements OnInit {
   //public pieChartColors = [{backgroundColor: '#00cc00'}, {backgroundColor: '#ff0000'}, {backgroundColor: '#ffff33'}];
   public pieChartColors = [{backgroundColor: ['#00cc00','#ff0000','#ffff33']}];
   public pieChartData = [];
-  
+
   public pieChartType = 'pie';
 
   constructor(private route: ActivatedRoute,
-    private topicService: TopicsService) { }
+    private topicService: TopicsService,
+    private loginService: LoginService) { }
 
   ngOnInit(){
    // this.topic = this.topicService.getTopic(1);
@@ -32,10 +34,10 @@ export class TopicDetailsComponent implements OnInit {
         this.topic=topic;
           this.refreshChart();
           });
-    }); 
+    });
 
     this.isAuthor = (localStorage.getItem('vo')=="yes");
-  
+
   }
 
   refreshChart()
@@ -68,7 +70,6 @@ export class TopicDetailsComponent implements OnInit {
               this.topic.countAbstain = a + x;
               break;
     }
-    this.refreshChart();  
-
+    this.refreshChart();
   }
 }
