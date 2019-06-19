@@ -7,9 +7,11 @@
       <h4>{{ topic.Author }}</h4>
       <h4>{{ topic.topicStatus }}</h4>
       <p>{{ topic.Description }}</p>
-    </ng-container>
-    <ng-container>
-      <input [(ngModel)]="topic.Title">
+    </ng-container >
+    <ng-container *ngIf="editable()">
+      <div><label>Title</label><input [(ngModel)]="topic.Title"></div>
+      <div><label>Title</label><textarea [(ngModel)]="topic.Description"></textarea></div>
+
     </ng-container>
 <div *ngIf="voteBtnVisible()">
   <button (click)="vote('yes')">Vote Yes</button>&nbsp;
@@ -28,5 +30,10 @@
     </div>
 </div>
 
+<div>
+    {{ topic | json }}
+</div>
+<div>
+    {{ loginService.getCurrentUser() | json }}
+</div>
 
-{{topic | json}}
