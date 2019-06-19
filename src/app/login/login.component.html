@@ -1,6 +1,13 @@
 <div>
   <p></p>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+
+  <div><label>Your ICSD email addres</label></div>
+  <input type="text" [(ngModel)]="email">
+  <div><label>Password</label></div>
+  <input type="password" [(ngModel)]="password"></div>
+  <button class="button" (click)="loginBtnClick()">{{getLoginBtnTxt()}}</button>
+
+  <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <div><label>Your ICSD email address</label>
     <input type="text" formControlName="username"></div>
     <div><label>Password</label>
@@ -10,10 +17,9 @@
           <button class="button" type="submit">Login</button>
       </div>
   </form>
-</div>
 
 <div *ngIf="isLoggedOn()">
     <a [routerLink]="['/topics']" class="button fancy-button">Topics</a>
     <input type="hidden" formControlName="do_logout" value="yes">
     <button class="button" type="submit">Logout</button>
-</div>
+</div> -->

@@ -11,7 +11,6 @@ import { LoginService } from '../login.service';
 })
 export class TopicDetailsComponent implements OnInit {
   topic: Topic;
-  isAuthor: boolean;
 
   //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
   //public pieChartData = [120, 150, 180, 90];
@@ -31,13 +30,10 @@ export class TopicDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
-        this.topic=topic;
+        this.topic = JSON.parse(JSON.stringify(topic));
           this.refreshChart();
-          });
+        });
     });
-
-    this.isAuthor = (localStorage.getItem('vo')=="yes");
-
   }
 
   refreshChart()
@@ -62,14 +58,28 @@ export class TopicDetailsComponent implements OnInit {
           this.topic.countYes = y + x;
           break;
       case "no":
-            n = n+x;
             this.topic.countNo = n + x;
             break;
       case "abstain":
-            a = a +x;
-              this.topic.countAbstain = a + x;
-              break;
+            this.topic.countAbstain = a + x;
+            break;
     }
     this.refreshChart();
+  }
+
+  voteBtnVisible(){
+    if(this.loginService.isLoggedIn()){
+      return this.loginService.getCurrentUser().isVoterRole && this.topic.topicStatus === 'Open';
+    } else {
+      return false;
+    }
+  }
+
+  editable(){
+    if(this.loginService.isLoggedIn()){
+      return this.loginService.getCurrentUser().isAuthorRole && this.topic.topicStatus === 'Draft';
+    } else {
+      return false;
+    }
   }
 }
