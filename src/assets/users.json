@@ -8,7 +8,7 @@
         "isVoterRole": "true"
     },    
     { 
-    "loginEmail": "admin@icsd.k12.ny.us",
+    "loginEmail": "admin",
     "loginPwd": "mypwd",
     "accountStatus": "Active",
     "isAdminRole": "true",
@@ -16,7 +16,7 @@
     "isVoterRole": "true"
 },
 { 
-    "loginEmail": "author@icsd.k12.ny.us",
+    "loginEmail": "author",
     "loginPwd": "mypwd",
     "accountStatus": "Active",
     "isAdminRole": "false",
@@ -24,7 +24,7 @@
     "isVoterRole": "false"
 },
 { 
-    "loginEmail": "voter@icsd.k12.ny.us",
+    "loginEmail": "voter",
     "loginPwd": "mypwd",
     "accountStatus": "Active",
     "isAdminRole": "false",

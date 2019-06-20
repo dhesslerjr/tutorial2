@@ -10,7 +10,17 @@
     </ng-container >
     <ng-container *ngIf="editable()">
       <div><label>Title</label><input [(ngModel)]="topic.Title"></div>
-      <div><label>Title</label><textarea [(ngModel)]="topic.Description"></textarea></div>
+      <div>
+        <p>Author: {{ topic.Author }}</p>
+        <p>Status: {{ topic.topicStatus }}</p>
+      </div>
+      <div><label>Status</label><select [(ngModel)]="topic.topicStatus" >
+        <option>Draft</option> 
+        <option>Published</option>
+        <option>Open</option>
+        <option>Closed</option>
+      </select></div>
+      <div><label>Description</label><textarea [(ngModel)]="topic.Description" rows="10" cols="60"></textarea></div>
 
     </ng-container>
 <div *ngIf="voteBtnVisible()">
@@ -28,12 +38,5 @@
               >
             </canvas>
     </div>
-</div>
-
-<div>
-    {{ topic | json }}
-</div>
-<div>
-    {{ loginService.getCurrentUser() | json }}
 </div>
 

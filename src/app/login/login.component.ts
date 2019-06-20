@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   loginBtnClick(){
     if(this.isLoggedOn()){
       this.LoginService.logout();
-      alert('Logged out.');
+      //alert('Logged out.');
     }else{
       let loginSuccess = false;
       this.users.forEach(u => {
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       });
 
       if(loginSuccess){
-        alert('Login succeeded.');
+        //alert('Login succeeded.');
         this.router.navigate(['topics']);
       }
       else{
@@ -76,14 +76,14 @@ export class LoginComponent implements OnInit {
       });
 
       if(loginSuccess){
-        alert('Login succeeded.');
+        //alert('Login succeeded.');
       }
       else{
-        alert('Login failed.');
+        //alert('Login failed.');
       }
     }else{
       this.LoginService.logout();
-      window.alert('Logged out.');
+      //window.alert('Logged out.');
     }
 
     this.loginForm.reset();

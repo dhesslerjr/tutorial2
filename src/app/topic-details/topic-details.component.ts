@@ -26,11 +26,11 @@ export class TopicDetailsComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit(){
-   // this.topic = this.topicService.getTopic(1);
-
+   
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
-        this.topic = JSON.parse(JSON.stringify(topic));
+//          this.topic = JSON.parse(JSON.stringify(topic));
+          this.topic = topic;
           this.refreshChart();
         });
     });
@@ -77,7 +77,7 @@ export class TopicDetailsComponent implements OnInit {
 
   editable(){
     if(this.loginService.isLoggedIn()){
-      return this.loginService.getCurrentUser().isAuthorRole && this.topic.topicStatus === 'Draft';
+      return this.loginService.getCurrentUser().isAuthorRole && (this.topic.topicStatus === 'Draft') || ((this.topic.topicStatus === 'Published'));
     } else {
       return false;
     }

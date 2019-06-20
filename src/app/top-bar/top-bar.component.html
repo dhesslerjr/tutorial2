@@ -2,7 +2,7 @@
   <h1><img src="/assets/oie_transparent.png" width="70px">LACS eVote v0.1</h1>
 </a>
 
-<span>{{getUsername()}}</span>
+<span *ngIf="getUsername()" >Logged in as: {{getUsername()}}</span>
 <a [routerLink]="['/login']" class="button fancy-button">{{loginService.isLoggedIn() ? 'Logout' : 'Login'}}</a>
 
 <!--
