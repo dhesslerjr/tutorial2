@@ -12,9 +12,7 @@
       <div><label>Title</label><input [(ngModel)]="topic.Title"></div>
       <div>
         <p>Author: {{ topic.Author }}</p>
-        <p>Status: {{ topic.topicStatus }}</p>
-      </div>
-      <div><label>Status</label><select [(ngModel)]="topic.topicStatus" >
+        <p><label>Status</label><select [(ngModel)]="topic.topicStatus" >
         <option>Draft</option> 
         <option>Published</option>
         <option>Open</option>

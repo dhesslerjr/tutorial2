@@ -17,6 +17,8 @@ import { TopicDetailsComponent } from './topic-details/topic-details.component';
 import { ChartsModule } from 'ng2-charts';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
+import { VotesService } from './votes.service';
+
 
 
 @NgModule({
@@ -49,7 +51,7 @@ import { LoginService } from './login.service';
     TopicDetailsComponent,
     LoginComponent
   ],
-  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy},LoginService],
+  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy},LoginService, VotesService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

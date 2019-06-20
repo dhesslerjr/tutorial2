@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Topic,TopicsService } from '../topics.service';
 import { LoginService } from '../login.service';
+import { VotesService, Vote } from '../votes.service';
 
 @Component({
   selector: 'app-topic-details',
@@ -12,10 +13,7 @@ import { LoginService } from '../login.service';
 export class TopicDetailsComponent implements OnInit {
   topic: Topic;
 
-  //public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
-  //public pieChartData = [120, 150, 180, 90];
   public pieChartLabels = ['Yes','No','Abstain'];
-  //public pieChartColors = [{backgroundColor: '#00cc00'}, {backgroundColor: '#ff0000'}, {backgroundColor: '#ffff33'}];
   public pieChartColors = [{backgroundColor: ['#00cc00','#ff0000','#ffff33']}];
   public pieChartData = [];
 
@@ -23,7 +21,7 @@ export class TopicDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private topicService: TopicsService,
-    private loginService: LoginService) { }
+    private loginService: LoginService, private votesService: VotesService) { }
 
   ngOnInit(){
    
@@ -53,6 +51,12 @@ export class TopicDetailsComponent implements OnInit {
     var n = Number(this.topic.countNo);
     var a = Number(this.topic.countAbstain);
 
+    var v: Vote = new Vote();
+    v.loginEmail = this.loginService.getCurrentUser().loginEmail;
+    v.topicID = this.topic.topicID;
+
+    //this.votesService.addVote(v);
+
     switch(myvote){
       case "yes":
           this.topic.countYes = y + x;
@@ -69,10 +73,12 @@ export class TopicDetailsComponent implements OnInit {
 
   voteBtnVisible(){
     if(this.loginService.isLoggedIn()){
-      return this.loginService.getCurrentUser().isVoterRole && this.topic.topicStatus === 'Open';
-    } else {
-      return false;
+      if(this.loginService.getCurrentUser().isVoterRole && this.topic.topicStatus === 'Open'){
+        return !this.votesService.hasVoted(this.topic.topicID,this.loginService.getCurrentUser().loginEmail);
+      }
     }
+    
+    return false;
   }
 
   editable(){
