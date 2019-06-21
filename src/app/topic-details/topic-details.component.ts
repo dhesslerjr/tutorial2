@@ -19,17 +19,20 @@ export class TopicDetailsComponent implements OnInit {
 
   public pieChartType = 'pie';
 
+  voteBtnVisible = false;
+
   constructor(private route: ActivatedRoute,
     private topicService: TopicsService,
     private loginService: LoginService, private votesService: VotesService) { }
 
   ngOnInit(){
-   
+
     this.route.paramMap.subscribe(params => {
       this.topicService.getTopic(params.get('topicID')).subscribe(topic => {
 //          this.topic = JSON.parse(JSON.stringify(topic));
           this.topic = topic;
           this.refreshChart();
+          this.setVoteBtnVisibility();
         });
     });
   }
@@ -55,30 +58,34 @@ export class TopicDetailsComponent implements OnInit {
     v.loginEmail = this.loginService.getCurrentUser().loginEmail;
     v.topicID = this.topic.topicID;
 
-    //this.votesService.addVote(v);
-
-    switch(myvote){
-      case "yes":
-          this.topic.countYes = y + x;
-          break;
-      case "no":
-            this.topic.countNo = n + x;
+    this.votesService.addVote(v).subscribe(() => {
+      switch(myvote){
+        case "yes":
+            this.topic.countYes = y + x;
             break;
-      case "abstain":
-            this.topic.countAbstain = a + x;
-            break;
-    }
-    this.refreshChart();
+        case "no":
+              this.topic.countNo = n + x;
+              break;
+        case "abstain":
+              this.topic.countAbstain = a + x;
+              break;
+      }
+      this.refreshChart();
+      this.setVoteBtnVisibility();
+    });
   }
 
-  voteBtnVisible(){
+  setVoteBtnVisibility() {
     if(this.loginService.isLoggedIn()){
-      if(this.loginService.getCurrentUser().isVoterRole && this.topic.topicStatus === 'Open'){
-        return !this.votesService.hasVoted(this.topic.topicID,this.loginService.getCurrentUser().loginEmail);
-      }
+    this.votesService.hasVoted(this.loginService.getCurrentUser().loginEmail, this.topic.topicID)
+      .subscribe(voted => {
+        this.voteBtnVisible = !voted
+          && this.loginService.getCurrentUser().isVoterRole &&
+            this.topic.topicStatus === 'Open';
+      });
+    } else {
+      this.voteBtnVisible = false;
     }
-    
-    return false;
   }
 
   editable(){
