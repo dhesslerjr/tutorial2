@@ -4,11 +4,11 @@ import { map, flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
 export class Vote {
-  "voteID"; //: "1",
-  "loginEmail"; //: "voter@icsd.k12.ny.us",
-  "topicID"; //: "4",
-  "voteValue"; //: "Yes",
-  "voteDateTime"; //: "2019-06-01T12:30:00-05:00"
+  voteID; //: "1",
+  loginEmail; //: "voter@icsd.k12.ny.us",
+  topicID; //: "4",
+  voteValue; //: "Yes",
+  voteDateTime; //: "2019-06-01T12:30:00-05:00"
 }
 
 @Injectable({
@@ -31,7 +31,7 @@ export class VotesService {
   }
 
   addVote(avote: Vote) {
-    if(!this.votes){
+    if(this.votes == null){
       this.init();
     }
     VotesService.nextVoteId = VotesService.nextVoteId + 1;
@@ -40,7 +40,7 @@ export class VotesService {
   }
 
   hasVoted(auserid, atopicid) {
-    if(!this.votes){
+    if(this.votes == null){
       this.init();
     }
     if (this.votes != null) {
