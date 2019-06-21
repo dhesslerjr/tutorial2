@@ -31,13 +31,18 @@ export class VotesService {
   }
 
   addVote(avote: Vote) {
+    if(!this.votes){
+      this.init();
+    }
     VotesService.nextVoteId = VotesService.nextVoteId + 1;
     avote.voteID = VotesService.nextVoteId;
     this.votes.push(avote);
   }
 
   hasVoted(auserid, atopicid) {
-    
+    if(!this.votes){
+      this.init();
+    }
     if (this.votes != null) {
       this.votes.forEach(v => {
         if (v.topicID === atopicid && v.loginEmail === auserid) {

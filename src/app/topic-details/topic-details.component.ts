@@ -55,7 +55,7 @@ export class TopicDetailsComponent implements OnInit {
     v.loginEmail = this.loginService.getCurrentUser().loginEmail;
     v.topicID = this.topic.topicID;
 
-    //this.votesService.addVote(v);
+    this.votesService.addVote(v);
 
     switch(myvote){
       case "yes":
@@ -68,7 +68,7 @@ export class TopicDetailsComponent implements OnInit {
             this.topic.countAbstain = a + x;
             break;
     }
-    this.refreshChart();
+    //this.refreshChart();
   }
 
   voteBtnVisible(){
