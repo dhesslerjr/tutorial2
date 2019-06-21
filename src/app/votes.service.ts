@@ -4,11 +4,11 @@ import { map, flatMap } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
 export class Vote {
-  "voteID"; //: "1",
-  "loginEmail"; //: "voter@icsd.k12.ny.us",
-  "topicID"; //: "4",
-  "voteValue"; //: "Yes",
-  "voteDateTime"; //: "2019-06-01T12:30:00-05:00"
+  voteID; //: "1",
+  loginEmail; //: "voter@icsd.k12.ny.us",
+  topicID; //: "4",
+  voteValue; //: "Yes",
+  voteDateTime; //: "2019-06-01T12:30:00-05:00"
 }
 
 @Injectable({
