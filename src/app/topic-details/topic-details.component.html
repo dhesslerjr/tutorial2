@@ -13,7 +13,7 @@
       <div>
         <p>Author: {{ topic.Author }}</p>
         <p><label>Status</label><select [(ngModel)]="topic.topicStatus" >
-        <option>Draft</option> 
+        <option>Draft</option>
         <option>Published</option>
         <option>Open</option>
         <option>Closed</option>
@@ -21,7 +21,7 @@
       <div><label>Description</label><textarea [(ngModel)]="topic.Description" rows="10" cols="60"></textarea></div>
 
     </ng-container>
-<div *ngIf="voteBtnVisible()">
+<div *ngIf="voteBtnVisible">
   <button (click)="vote('yes')">Vote Yes</button>&nbsp;
   <button (click)="vote('no')">Vote No</button>&nbsp;
   <button (click)="vote('abstain')">Abstain</button>

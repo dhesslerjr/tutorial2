@@ -20,37 +20,29 @@ export class VotesService {
   static nextVoteId = 100;
 
   constructor(private http: HttpClient) {
-
-
   }
 
   init() {
-    return this.http.get('/assets/votes.json').pipe(map((votes: any) => {
-      this.votes = votes;
-    }));
+    if ( null === this.votes ) {
+      return this.http.get('/assets/votes.json').pipe(map((votes: any) => {
+        this.votes = votes;
+      }));
+    } else {
+      return Observable.create(o => o.next());
+    }
   }
 
   addVote(avote: Vote) {
-    if(this.votes == null){
-      this.init();
-    }
-    VotesService.nextVoteId = VotesService.nextVoteId + 1;
-    avote.voteID = VotesService.nextVoteId;
-    this.votes.push(avote);
+    return this.init().pipe(map(() => {
+      VotesService.nextVoteId = VotesService.nextVoteId + 1;
+      avote.voteID = VotesService.nextVoteId;
+      this.votes.push(avote);
+    }));
   }
 
   hasVoted(auserid, atopicid) {
-    if(this.votes == null){
-      this.init();
-    }
-    if (this.votes != null) {
-      this.votes.forEach(v => {
-        if (v.topicID === atopicid && v.loginEmail === auserid) {
-          return true;
-        }    
-      });
-    }
-
-    return false;
+    return this.init().pipe(map(() => {
+      return this.votes.findIndex(v => v.topicID === atopicid && v.loginEmail === auserid) > -1;
+    }));
   }
 }
