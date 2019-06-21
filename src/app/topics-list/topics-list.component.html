@@ -1,5 +1,9 @@
 <h2>Topics</h2>
-<div *ngFor="let topic of topics">
+<a [routerLink]="['/topics/open']" class="button fancy-button">Open Topics</a>&nbsp;
+<a [routerLink]="['/topics']" class="button fancy-button">All Topics</a>
+
+
+<div *ngFor="let topic of getTopicsOfStatusUrl()">
   <h3>
     <a [title]="topic.Title + ' details'" [routerLink]="['/topics',topic.topicID]">
     {{ topic.Title }}

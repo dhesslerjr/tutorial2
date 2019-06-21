@@ -33,8 +33,10 @@ import { VotesService } from './votes.service';
       { path: 'products/:productId', component: ProductDetailsComponent},
       { path: 'cart', component: CartComponent},
       { path: 'login', component: LoginComponent},
+      { path: 'logout', component: LoginComponent},
       { path: 'shipping', component: ShippingComponent },
       { path: 'topics', component: TopicsListComponent },
+      { path: 'topics/open', component: TopicsListComponent },
       { path: 'products', component: ProductListComponent },
       { path: 'topics/:topicID', component: TopicDetailsComponent },
   ])

@@ -2,8 +2,15 @@
   <h1><img src="/assets/oie_transparent.png" width="70px">LACS eVote v0.1</h1>
 </a>
 
+
 <span *ngIf="getUsername()" >Logged in as: {{getUsername()}}</span>
-<a [routerLink]="['/login']" class="button fancy-button">{{loginService.isLoggedIn() ? 'Logout' : 'Login'}}</a>
+<div *ngIf="!loginService.isLoggedIn()">
+<a [routerLink]="['/login']" class="button fancy-button">Login</a>
+</div>
+<div *ngIf="loginService.isLoggedIn()">
+    <a [routerLink]="['/logout']" class="button fancy-button">Logout</a>
+    </div>
+    
 
 <!--
 Copyright Google LLC. All Rights Reserved.
