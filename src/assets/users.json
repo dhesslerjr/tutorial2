@@ -1,15 +1,15 @@
 [
     { 
-        "loginEmail": "quinn",
-        "loginPwd": "mypwd",
+        "loginEmail": "voter",
+        "loginPwd": "1234",
         "accountStatus": "Active",
-        "isAdminRole": "true",
-        "isAuthorRole": "true",
+        "isAdminRole": "false",
+        "isAuthorRole": "false",
         "isVoterRole": "true"
     },    
     { 
     "loginEmail": "admin",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Active",
     "isAdminRole": "true",
     "isAuthorRole": "false",
@@ -17,15 +17,15 @@
 },
 { 
     "loginEmail": "author",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Active",
     "isAdminRole": "false",
     "isAuthorRole": "true",
-    "isVoterRole": "false"
+    "isVoterRole": "true"
 },
 { 
-    "loginEmail": "voter",
-    "loginPwd": "mypwd",
+    "loginEmail": "voter2",
+    "loginPwd": "1234",
     "accountStatus": "Active",
     "isAdminRole": "false",
     "isAuthorRole": "false",
@@ -33,7 +33,7 @@
 },
 { 
     "loginEmail": "guest@icsd.k12.ny.us",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Active",
     "isAdminRole": "false",
     "isAuthorRole": "false",
@@ -41,7 +41,7 @@
 },
 { 
     "loginEmail": "pending@icsd.k12.ny.us",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Pending",
     "isAdminRole": "false",
     "isAuthorRole": "false",
@@ -49,7 +49,7 @@
 },
 { 
     "loginEmail": "locked@icsd.k12.ny.us",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Locked",
     "isAdminRole": "false",
     "isAuthorRole": "false",
@@ -57,7 +57,7 @@
 },
 { 
     "loginEmail": "obsolete@icsd.k12.ny.us",
-    "loginPwd": "mypwd",
+    "loginPwd": "1234",
     "accountStatus": "Obsolete",
     "isAdminRole": "false",
     "isAuthorRole": "false",

@@ -2,8 +2,8 @@
 {
     "topicID": "1",
     "Author": "author@icsd.k12.ny.us",
-    "Title": "topic1",
-    "Description": "First topic description here.",
+    "Title": "Give Bouncers Stun Guns",
+    "Description": "ASM bouncers have been disreguarded in the past as they are unimposing, it's time to change that.",
     "topicStatus": "Open",
     "countYes": "0",
     "countNo": "0",
@@ -12,8 +12,8 @@
 {
     "topicID": "2",
     "Author": "author@icsd.k12.ny.us",
-    "Title": "topic2",
-    "Description": "Second topic description here.",
+    "Title": "ASM Period Change",
+    "Description": "ASM takes too much tome out of classes. By changing the schedule so that ASM only occurs during 6th period we can have more time to do school work, and only subtract from family group amd committee.",
     "topicStatus": "Published",
     "countYes": "0",
     "countNo": "0",
@@ -22,8 +22,8 @@
 {
     "topicID": "3",
     "Author": "author@icsd.k12.ny.us",
-    "Title": "topic3",
-    "Description": "some initial descriptive content here...",
+    "Title": "LACS Dress Code Revisions 2019",
+    "Description": "The LACS dress code has been up to interpretation for too long. We should clarify that so there is no more miscommunication.",
     "topicStatus": "Draft",
     "countYes": "0",
     "countNo": "0",
@@ -32,11 +32,11 @@
 {
     "topicID": "4",
     "Author": "author@icsd.k12.ny.us",
-    "Title": "topic4",
-    "Description": "topic four description is here",
+    "Title": "Gender Neutral Bathroom for Inclusivity",
+    "Description": "LACS claims to be inclusive, however we don't accomodate many of our non-gender confirming students. We make them feel escluded and potentially unsafe when we force them to use the gnedered bathrooms. Changing one bathrom to gender neutral would help make these students feel more welcome in our community.",
     "topicStatus": "Closed",
-    "countYes": "1",
-    "countNo": "2",
-    "countAbstain": "3"
+    "countYes": "164",
+    "countNo": "17",
+    "countAbstain": "21"
 }
 ]
